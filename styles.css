@@ -74,7 +74,7 @@ body:has(.detail-hero) .footer { z-index: 2; }
 .home-hero { background: linear-gradient(180deg, #bfa7f1 0%, #6028d5 61%); }
 .home-hero .hero-inner { padding-top: clamp(136px, 10.625vw, 153px); }
 .home-hero .hero-copy { width: min(51%, 660px); }
-.play-button { display: inline-grid; margin-top: 32px; padding-inline: 40px; font-weight: 700; }
+.play-button { display: inline-grid; min-height: 52px; margin-top: 32px; padding: 12px 24px; font-size: 18px; font-weight: 700; }
 .home-hero h1 { font-size: clamp(42px, 4.17vw, 60px); line-height: 1; }
 .home-hero .hero-copy p { max-width: 600px; margin-top: 32px; font-size: clamp(23px, 2.23vw, 32px); line-height: 1.3; color: #fff; }
 .hero-art { position: absolute; width: min(46vw, 670px); right: min(-80px, calc((1280px - 100vw) / 2)); top: 144px; }
