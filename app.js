@@ -177,7 +177,7 @@ function detail(item) {
     : '';
   return `
     <section class="hero detail-hero"><div class="container hero-inner">
-      <div class="hero-copy"><h1>${escapeHtml(item.title)}</h1><div class="guidance">
+      <div class="hero-copy"><h1${item.id === 24 ? ' class="detail-title-compact"' : ''}>${escapeHtml(item.title)}</h1><div class="guidance">
         <p>${guidanceLine(item.risk)}</p><p>${guidanceLine(item.advice)}</p>
       </div></div>
       <div class="phone"><div class="phone-screen" aria-label="Пример сообщения">
