@@ -358,7 +358,8 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   .row-icon { flex: 0 0 32px; min-width: 32px; height: 32px; margin: 0; }
   .detail-hero .hero-inner { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "phone" "guidance"; grid-template-rows: auto; gap: 16px; padding-top: 102px; }
   .detail-hero h1 { --detail-title-size: clamp(25px, 8.3vw, 34px); padding-top: 0; }
-  .detail-hero { top: min(0px, calc(100svh - var(--detail-height, 0px) + var(--radius))); }
+  .detail-hero { position: relative; top: auto; }
+  body:has(.detail-hero) .header { position: absolute; }
   .guidance { margin-top: 8px; }
   .guidance p + p { margin-top: 16px; }
   .phone { width: min(100%, 296px); justify-self: center; }
