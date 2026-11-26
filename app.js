@@ -215,6 +215,6 @@ document.querySelector('.skip').addEventListener('click', event => {
   event.preventDefault();
   main.focus();
 });
-for (const region of document.querySelectorAll('header, footer, .desktop-notice')) typesetContent(region);
+for (const region of document.querySelectorAll('header, footer')) typesetContent(region);
 route();
 updateHeader();
