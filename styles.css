@@ -102,6 +102,7 @@ body:has(.detail-hero) .footer { z-index: 2; }
   width: 12px;
   height: 2px;
   flex: none;
+  transform: translateY(-2px);
   background: currentColor;
   box-shadow: 0 -4px currentColor, 0 4px currentColor;
 }
