@@ -52,9 +52,9 @@ const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({
 const button = (href, label) => `<a class="button" href="${href}">${label}</a>`;
 
 const firstSteps = [
-  'Не торопитесь и никому не сообщайте коды.',
-  'Проверьте запрос через официальный сайт или приложение.',
-  'Сохраните переписку и обратитесь в поддержку.',
+  'Не торопитесь и никому не сообщайте коды',
+  'Проверьте запрос через официальный сайт или приложение',
+  'Сохраните переписку и обратитесь в поддержку',
 ];
 
 function home() {
@@ -88,7 +88,7 @@ function home() {
       <h2>Что делать в первую очередь?</h2>
       <ol class="three-column steps">${firstSteps.map((step, index) => `<li><span>${index + 1}</span><p>${step}</p></li>`).join('')}</ol>
       <div class="help-banner"><div><h3>Уже сообщили код или перевели деньги?</h3>
-        <p>Свяжитесь с банком через приложение или по номеру на карте.</p></div>
+        <p>Свяжитесь с банком через приложение или по номеру на карте</p></div>
         <button class="button" type="button" disabled>Срочная помощь</button></div>
     </div></section>
     <section class="sheet faq" id="faq"><div class="container">
