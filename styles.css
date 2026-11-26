@@ -192,8 +192,8 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   min-height: 0;
   padding-block: 114px 0;
 }
-.detail-hero + .sheet { margin-top: -33px; z-index: 2; }
-.detail-hero .hero-copy { width: 100%; padding-block: 46px 97px; }
+.detail-hero + .sheet { margin-top: calc(-1 * var(--radius)); z-index: 2; }
+.detail-hero .hero-copy { width: 100%; padding-block: 46px calc(64px + var(--radius)); }
 .detail-hero h1 { font-size: clamp(44px, 4.45vw, 64px); line-height: 1.05; max-width: 651px; }
 .guidance { margin-top: 28px; color: #fff; font: var(--body-large); }
 .guidance p + p { margin-top: 24px; }
@@ -223,7 +223,7 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   flex: 1;
   min-width: 0;
   margin: 8% 8% 0;
-  padding-bottom: 58px;
+  padding-bottom: calc(25px + var(--radius));
   border-radius: 8% 8% 0 0 / 38px 38px 0 0;
   background: #fff;
   overflow: hidden;
@@ -351,12 +351,11 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   .guidance { margin-top: 16px; }
   .guidance p + p { margin-top: 16px; }
   .phone { width: min(100%, 296px); justify-self: center; }
-  .phone-screen { padding-bottom: 48px; }
+  .phone-screen { padding-bottom: calc(24px + var(--radius)); }
   .chat-header { min-height: 40px; gap: 8px; }
   .chat-header strong { font-size: 13px; overflow-wrap: anywhere; }
   .chat-header > span:first-child { font-size: 22px; }
   .chat-bubble .avatar { width: 24px; }
-  .detail-hero + .sheet { margin-top: -24px; }
   .signals ol { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 24px; }
   .signals li { padding: 24px 16px; border-radius: 24px; }
   .signal-index { margin-bottom: 24px; font-size: 40px; }

@@ -1,6 +1,10 @@
 const groups = window.schemeGroups;
 const all = groups.flatMap(group => group.items);
 const byId = new Map(all.map(item => [item.id, item]));
+const messageAttachments = {
+  9: ['scam-certificate.png', 325, 244, 'Поддельный сертификат из примера мошеннического сообщения'],
+  28: ['scam-wheel.png', 324, 182, 'Изображение розыгрыша «Колесо фортуны» из примера мошеннического сообщения'],
+};
 const main = document.querySelector('main');
 const header = document.querySelector('.header');
 const navigation = document.querySelector('.section-navigation');
@@ -167,6 +171,10 @@ function guidanceLine(text) {
 }
 
 function detail(item) {
+  const attachment = messageAttachments[item.id];
+  const attachmentImage = attachment
+    ? `<img class="message-attachment" src="assets/${attachment[0]}" width="${attachment[1]}" height="${attachment[2]}" alt="${escapeHtml(attachment[3])}">`
+    : '';
   return `
     <section class="hero detail-hero"><div class="container hero-inner">
       <div class="hero-copy"><h1>${escapeHtml(item.title)}</h1><div class="guidance">
@@ -177,9 +185,7 @@ function detail(item) {
         <div class="chat-header"><span aria-hidden="true">‹</span><img class="avatar" src="assets/chat-avatar.png" alt=""><strong>${escapeHtml(item.sender)}</strong></div>
         <div class="chat-content">
           <div class="chat-bubble"><img class="avatar" src="assets/chat-avatar.png" alt="">
-            <p class="message">${escapeHtml(item.message)}${item.id === 9
-              ? '<img class="message-attachment" src="assets/scam-certificate.png" width="325" height="244" alt="Поддельный сертификат из примера мошеннического сообщения">'
-              : ''}<small aria-hidden="true">9:41</small></p>
+            <p class="message">${escapeHtml(item.message)}${attachmentImage}<small aria-hidden="true">9:41</small></p>
           </div>
           <img class="chat-reply" src="assets/chat-reply.png" alt="">
         </div>
