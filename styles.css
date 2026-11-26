@@ -366,10 +366,11 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
     grid-template-columns: 1fr auto;
     grid-template-areas: "game game" "links qr";
     grid-template-rows: auto auto;
-    gap: 24px 16px;
+    gap: 24px 12px;
     padding-block: 32px 36px;
   }
-  .footer-links { justify-self: start; }
+  .footer-links { justify-self: start; gap: 8px; }
+  .footer-site { margin-left: 8px; }
 }
 @media (min-width: 768px) and (max-width: 1099px) {
   :root {
