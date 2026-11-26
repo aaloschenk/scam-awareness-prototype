@@ -240,6 +240,7 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
 .chat-bubble .avatar { width: clamp(32px, 3.55vw, 51px); }
 .message { flex: 1; min-width: 0; background: #007aff; color: white; border-radius: 22px; padding: 8px 11px; font-size: clamp(14px, 1.5vw, 21px); line-height: 1.32; overflow-wrap: anywhere; white-space: pre-wrap; }
 .message small { display: block; text-align: right; font-size: 12px; color: #fff9; }
+.message-attachment { width: 100%; height: auto; margin-top: 6px; border-radius: 8px; }
 .chat-reply { width: 100%; height: auto; margin-top: clamp(16px, 2vw, 30px); }
 .signals { padding-bottom: 48px; }
 .signals ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 48px; }

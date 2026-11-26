@@ -77,7 +77,7 @@ function home() {
       <h2>Популярные схемы</h2>
       <div class="three-column">${featured.map(([id, title, asset]) => `
         <a class="featured" href="#/scheme/${id}">
-          <h3>${title}</h3><p>${escapeHtml(byId.get(id).description)}</p>
+          <h3>${title}</h3><p>${escapeHtml(byId.get(id).description.replace(/\.$/, ''))}</p>
           <div class="featured-bottom">
             <span class="tag">Подробнее</span><img src="assets/${asset}.png" alt="">
           </div>
@@ -177,7 +177,9 @@ function detail(item) {
         <div class="chat-header"><span aria-hidden="true">‹</span><img class="avatar" src="assets/chat-avatar.png" alt=""><strong>${escapeHtml(item.sender)}</strong></div>
         <div class="chat-content">
           <div class="chat-bubble"><img class="avatar" src="assets/chat-avatar.png" alt="">
-            <p class="message">${escapeHtml(item.message)}<small aria-hidden="true">9:41</small></p>
+            <p class="message">${escapeHtml(item.message)}${item.id === 9
+              ? '<img class="message-attachment" src="assets/scam-certificate.png" width="325" height="244" alt="Поддельный сертификат из примера мошеннического сообщения">'
+              : ''}<small aria-hidden="true">9:41</small></p>
           </div>
           <img class="chat-reply" src="assets/chat-reply.png" alt="">
         </div>
