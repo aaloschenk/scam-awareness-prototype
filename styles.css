@@ -77,7 +77,7 @@ body:has(.detail-hero) .footer { z-index: 2; }
   padding-block: clamp(136px, 10.625vw, 153px) clamp(124px, 10vw, 152px);
 }
 .home-hero .hero-copy { width: min(51%, 660px); }
-.play-button { margin-top: 32px; }
+.hero-cta { margin-top: 32px; }
 .home-hero h1 { font-size: clamp(42px, 4.17vw, 60px); line-height: 1; }
 .home-hero .hero-copy p { max-width: 600px; margin-top: 32px; font-size: clamp(23px, 2.23vw, 32px); line-height: 1.3; color: #fff; }
 .hero-art { position: absolute; width: min(46vw, 670px); right: min(-80px, calc((1280px - 100vw) / 2)); bottom: 0; }
@@ -219,6 +219,13 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
 }
 .footer-qr { border-radius: 8px; }
 .footer-links { display: flex; justify-self: end; align-items: center; gap: 12px; }
+.footer-game { display: none; }
+main:has(.home-hero) + .footer .footer-row { padding-block: 48px 56px; }
+main:has(.home-hero) + .footer .footer-caption { display: none; }
+main:has(.home-hero) + .footer .footer-game { display: grid; gap: 14px; justify-items: start; }
+.footer-game h2 { font: 700 clamp(24px, 2.2vw, 32px)/1.15 "TT Uzum", sans-serif; }
+.footer-game p { max-width: 46ch; font: var(--body-small); color: var(--ink); }
+.footer-game .pill { margin-top: 6px; }
 main:not(:has(.home-hero)) + .footer .footer-row {
   grid-template-columns: minmax(0, 1fr) 71px;
 }
