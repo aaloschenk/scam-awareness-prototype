@@ -4,6 +4,11 @@ const byId = new Map(all.map(item => [item.id, item]));
 const main = document.querySelector('main');
 const catalogLink = document.querySelector('#catalog-link');
 const state = { group: -1, query: '' };
+const detailSize = new ResizeObserver(entries => {
+  for (const { target } of entries) {
+    target.style.setProperty('--detail-height', `${target.offsetHeight}px`);
+  }
+});
 
 const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -36,7 +41,9 @@ function home() {
       <div class="three-column">${featured.map(([id, title, category, asset]) => `
         <a class="featured" href="#/scheme/${id}">
           <h3>${title}</h3><p>${escapeHtml(byId.get(id).description)}</p>
-          <img src="assets/${asset}.png" alt=""><span class="tag">${category}</span>
+          <div class="featured-bottom">
+            <span class="tag">${category}</span><img src="assets/${asset}.png" alt="">
+          </div>
         </a>`).join('')}</div>
       ${button('#/schemes', 'Ко всем схемам')}
     </div></section>
@@ -149,6 +156,7 @@ function detail(item) {
 }
 
 function route() {
+  detailSize.disconnect();
   const segments = location.hash.slice(1).split('/').filter(Boolean);
   const [page, id] = segments;
   const item = page === 'scheme' && byId.get(Number(id));
@@ -175,6 +183,7 @@ function route() {
   } else if (item) {
     pageTitle = item.title;
     main.innerHTML = detail(item);
+    detailSize.observe(main.querySelector('.detail-hero'));
   } else {
     pageTitle = 'Страница не найдена';
     main.innerHTML = `<section class="sheet help-page"><div class="container"><h1>${pageTitle}</h1>${button('#/schemes', 'Ко всем схемам')}</div></section>`;

@@ -68,10 +68,10 @@ h3 { font: var(--heading-card); }
 .hero-inner { min-height: 797px; position: relative; display: flex; align-items: flex-start; padding-top: 240px; }
 .hero-copy { width: min(57%, 713px); position: relative; z-index: 1; }
 .hero-copy h1 { color: #fff; overflow-wrap: anywhere; }
-.home-hero .hero-copy { width: min(64%, 797px); }
+.home-hero .hero-copy { width: min(51%, 720px); }
 .home-hero h1 { font-size: clamp(56px, 5.56vw, 80px); line-height: 1; }
 .home-hero .hero-copy p { max-width: 633px; margin-top: 32px; font-size: clamp(23px, 2.23vw, 32px); line-height: 1.3; color: #fff; }
-.hero-art { position: absolute; width: min(58vw, 670px); right: min(-80px, calc((1280px - 100vw) / 2)); top: 144px; }
+.hero-art { position: absolute; width: min(46vw, 670px); right: min(-80px, calc((1280px - 100vw) / 2)); top: 144px; }
 .sheet { background: #fff; border-radius: var(--radius) var(--radius) 0 0; padding: 80px 0 144px; position: relative; }
 .hero + .sheet { margin-top: -64px; }
 .home-hero + .sheet { padding-top: 70px; }
@@ -81,9 +81,9 @@ h3 { font: var(--heading-card); }
 .featured { position: relative; isolation: isolate; display: flex; flex-direction: column; align-items: flex-start; min-height: 382px; padding: 32px; border-radius: 32px; background: var(--surface); overflow: hidden; }
 .featured:hover, .scheme-row:hover { background: #ebe5fb; }
 .featured p { color: var(--muted); margin-top: 12px; max-width: 355px; font: var(--body-small); }
-.featured img { position: absolute; z-index: -1; right: 32px; bottom: 32px; width: auto; max-width: 56%; max-height: 170px; object-fit: contain; object-position: bottom right; }
-.featured img[src$="box.png"] { bottom: 50px; }
-.tag { margin-top: auto; background: white; border-radius: 12px; padding: 14px 20px; font-weight: 600; font-size: 16px; }
+.featured-bottom { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: end; gap: 12px; width: 100%; margin-top: auto; padding-top: 16px; }
+.featured-bottom img { width: 100%; height: clamp(86px, 12vw, 170px); object-fit: contain; object-position: bottom right; }
+.tag { justify-self: start; background: white; border-radius: 12px; padding: 12px; font-weight: 600; font-size: 16px; }
 .three-column + .button { margin-top: 44px; }
 .signals ol + .button { margin-top: 48px; }
 .purple { background: var(--gradient); padding-bottom: 112px; }
@@ -126,6 +126,7 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
 .scheme-description { display: block; color: var(--muted); font: var(--body-small); }
 .row-icon { display: grid; place-items: center; background: #929292; color: #fff; min-width: 35px; height: 35px; margin: 4px; border-radius: 50%; font-size: 26px; line-height: 1; }
 .empty { padding: 36px 0; color: var(--muted); }
+.detail-hero { position: sticky; top: min(0px, calc(100svh - var(--detail-height, 0px))); }
 .detail-hero .hero-inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 42%);
@@ -134,7 +135,7 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   min-height: 0;
   padding-block: 114px 0;
 }
-.detail-hero + .sheet { margin-top: -33px; }
+.detail-hero + .sheet { margin-top: -33px; z-index: 1; }
 .detail-hero .hero-copy { width: 100%; padding-block: 46px 65px; }
 .detail-hero h1 { font-size: clamp(44px, 4.45vw, 64px); line-height: 1.05; max-width: 651px; }
 .guidance { margin-top: 28px; color: #fff; font: var(--body-large); }
@@ -161,12 +162,12 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   background: url("assets/phone.png") top center / 100% auto no-repeat;
   pointer-events: none;
 }
-.phone-screen { position: relative; width: 100%; padding-bottom: 58px; border-radius: 56px 56px 0 0; background: #fff; overflow: hidden; color: #19181d; }
+.phone-screen { position: relative; width: 100%; padding-bottom: 58px; border-radius: 56px 56px 0 0; background: #fff; overflow: hidden; color: #19181d; display: flex; flex-direction: column; }
 .phone-status { width: 100%; height: auto; }
 .chat-header { display: flex; gap: 12px; align-items: center; min-height: clamp(48px, 5vw, 71px); padding: 0 4.2%; box-shadow: 0 4px 12px #0002; }
 .chat-header > span:first-child { font-size: 28px; line-height: 1; }
 .avatar { width: clamp(27px, 2.8vw, 40px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; flex: none; }
-.chat-content { padding-top: clamp(20px, 2.8vw, 40px); }
+.chat-content { margin-top: auto; padding-top: clamp(20px, 2.8vw, 40px); }
 .chat-bubble { display: flex; align-items: flex-end; gap: clamp(5px, .7vw, 10px); padding-inline: 2.8%; }
 .chat-bubble .avatar { width: clamp(32px, 3.55vw, 51px); }
 .message { flex: 1; min-width: 0; background: #007aff; color: white; border-radius: 22px; padding: 8px 11px; font-size: clamp(14px, 1.5vw, 21px); line-height: 1.32; overflow-wrap: anywhere; white-space: pre-wrap; }
@@ -182,11 +183,15 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
 .footer a:hover { text-decoration: underline; }
 .visually-hidden, .skip:not(:focus) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .skip:focus { position: absolute; z-index: 3; background: white; padding: 12px; }
+@media (max-width: 1199px) {
+  .featured-bottom { grid-template-columns: minmax(0, 1fr); }
+  .featured-bottom img { grid-row: 1; justify-self: end; width: 70%; }
+}
 @media (max-width: 900px) {
   .container { width: calc(100% - 60px); }
   .header-row { min-height: 100px; }
   .hero-inner { min-height: 650px; padding-top: 170px; }
-  .hero-art { right: -55px; top: 175px; }
+  .hero-art { right: -30px; top: 175px; }
   .featured { padding: 20px; min-height: 310px; }
   .detail-hero .hero-inner { padding-top: 104px; }
   .phone { margin-right: 0; }
@@ -222,6 +227,6 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   }
   .home-hero h1 { font-size: 52px; }
   .home-hero .hero-copy p { max-width: 90%; }
-  .home-hero .hero-art { right: -30px; width: 54%; }
+  .home-hero .hero-art { width: min(46vw, 520px); }
   .help-banner { gap: 24px; }
 }
