@@ -105,7 +105,11 @@ function renderResults() {
     <section class="category"><h2>${escapeHtml(group.name)}</h2>
       <ul>${group.items.map(item => `<li><a class="scheme-row" href="#/scheme/${item.id}">
         <div><strong>${escapeHtml(item.title)}</strong><span class="scheme-description">${escapeHtml(item.description)}</span></div>
-        <span class="row-icon" aria-hidden="true">+</span>
+        <span class="row-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" focusable="false">
+            <path d="M2 10h16m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
       </a></li>`).join('')}</ul>
     </section>`).join('') : '<p class="empty">Ничего не найдено. Попробуйте изменить запрос или выбрать другую категорию.</p>';
   typesetContent(results);
