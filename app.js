@@ -6,6 +6,7 @@ const header = document.querySelector('.header');
 const navigation = document.querySelector('.section-navigation');
 const menuToggle = document.querySelector('#sections-toggle');
 const sectionsMenu = document.querySelector('#sections-menu');
+const catalogLink = document.querySelector('#catalog-link');
 const state = { group: -1, query: '' };
 
 function setMenuOpen(open) {
@@ -13,26 +14,23 @@ function setMenuOpen(open) {
   sectionsMenu.hidden = !open;
 }
 
-function renderMenu(page, item) {
-  const common = [['#game', 'Играть сейчас']];
-  const links = !page ? [
+function renderMenu(page) {
+  navigation.hidden = Boolean(page);
+  catalogLink.hidden = !page;
+  catalogLink.href = page === 'schemes' ? '#/' : '#/schemes';
+  catalogLink.textContent = typeset(page === 'schemes' ? 'На главную' : '☰ Схемы');
+  setMenuOpen(false);
+  if (page) return;
+  const links = [
     ['#/schemes', 'Все схемы'],
     ['#popular', 'Популярные схемы'],
     ['#first-steps', 'Что делать в первую очередь'],
     ['#faq', 'Частые вопросы'],
-  ] : page === 'schemes' ? [
-    ['#/', 'На главную'],
-    ['#search', 'Поиск по схемам'],
-    ['#results', 'Список схем'],
-  ] : [
-    ['#/schemes', 'Все схемы'],
-    ...(item ? [['#signals', 'Что выдаёт обман']] : []),
   ];
-  sectionsMenu.innerHTML = [...links, ...common].map(([target, label]) => target.startsWith('#/')
+  sectionsMenu.innerHTML = links.map(([target, label]) => target.startsWith('#/')
     ? `<li><a href="${target}">${label}</a></li>`
     : `<li><button type="button" data-section="${target}">${label}</button></li>`).join('');
   typesetContent(sectionsMenu);
-  setMenuOpen(false);
 }
 
 function updateHeader() {
@@ -228,7 +226,7 @@ function route() {
     main.innerHTML = `<section class="sheet help-page"><div class="container"><h1>${pageTitle}</h1>${button('#/schemes', 'Ко всем схемам')}</div></section>`;
   }
   document.title = `${pageTitle} · Uzum`;
-  renderMenu(page, item);
+  renderMenu(page);
   typesetContent(main);
 }
 
@@ -247,10 +245,10 @@ sectionsMenu.addEventListener('click', event => {
   if (!button) return;
   const section = document.querySelector(button.dataset.section);
   if (!section) return;
-  const offset = main.querySelector('.detail-hero') ? 0 : header.offsetHeight + 12;
+  const offset = header.offsetHeight + 12;
   const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
-  const focus = section.matches('input') ? section : section.querySelector('h2') || section;
-  if (!focus.matches('input')) focus.tabIndex = -1;
+  const focus = section.querySelector('h2') || section;
+  focus.tabIndex = -1;
   focus.focus({ preventScroll: true });
   window.scrollTo({ top: window.scrollY + section.getBoundingClientRect().top - offset, behavior });
 });
