@@ -2,8 +2,15 @@ const groups = window.schemeGroups;
 const all = groups.flatMap(group => group.items);
 const byId = new Map(all.map(item => [item.id, item]));
 const main = document.querySelector('main');
+const header = document.querySelector('.header');
 const catalogLink = document.querySelector('#catalog-link');
 const state = { group: -1, query: '' };
+
+function updateHeader() {
+  const panel = main.querySelector('.signals');
+  header.classList.toggle('is-scrolled', !panel && window.scrollY > 0);
+  header.inert = Boolean(panel && panel.getBoundingClientRect().top <= 0);
+}
 const detailSize = new ResizeObserver(entries => {
   for (const { target } of entries) {
     target.style.setProperty('--detail-height', `${target.offsetHeight}px`);
@@ -198,11 +205,14 @@ function route() {
 window.addEventListener('hashchange', () => {
   route();
   window.scrollTo(0, 0);
+  updateHeader();
   main.focus({ preventScroll: true });
 });
+window.addEventListener('scroll', updateHeader, { passive: true });
 document.querySelector('.skip').addEventListener('click', event => {
   event.preventDefault();
   main.focus();
 });
 for (const region of document.querySelectorAll('header, footer, .desktop-notice')) typesetContent(region);
 route();
+updateHeader();

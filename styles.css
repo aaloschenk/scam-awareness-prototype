@@ -53,7 +53,10 @@ h1 { font: var(--heading-page); }
 h2 { font: var(--heading-section); }
 h3 { font: var(--heading-card); }
 .container { width: min(1280px, calc(100% - 160px)); margin-inline: auto; }
-.header { position: absolute; z-index: 1; inset: 0 0 auto; }
+.header { position: fixed; z-index: 3; inset: 0 0 auto; }
+.header.is-scrolled { background: #6028d5; }
+body:has(.detail-hero) .header { z-index: 1; }
+body:has(.detail-hero) .footer { z-index: 2; }
 .header-row { min-height: 127px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .logo { width: 147px; }
 .header nav { display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-end; }
@@ -135,7 +138,7 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   min-height: 0;
   padding-block: 114px 0;
 }
-.detail-hero + .sheet { margin-top: -33px; z-index: 1; }
+.detail-hero + .sheet { margin-top: -33px; z-index: 2; }
 .detail-hero .hero-copy { width: 100%; padding-block: 46px 65px; }
 .detail-hero h1 { font-size: clamp(44px, 4.45vw, 64px); line-height: 1.05; max-width: 651px; }
 .guidance { margin-top: 28px; color: #fff; font: var(--body-large); }
