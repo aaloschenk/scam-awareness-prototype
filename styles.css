@@ -110,7 +110,7 @@ body:has(.detail-hero) .footer { z-index: 2; }
 .hero-inner { min-height: 797px; position: relative; display: flex; align-items: flex-start; padding-top: 240px; }
 .hero-copy { width: min(57%, 713px); position: relative; z-index: 1; }
 .hero-copy h1 { color: #fff; overflow-wrap: anywhere; }
-.home-hero { background: linear-gradient(180deg, #bfa7f1 0%, #6028d5 61%); }
+.home-hero, .detail-hero { background: linear-gradient(180deg, #bfa7f1 0%, #6028d5 61%); }
 .home-hero .hero-inner {
   min-height: 0;
   padding-block: clamp(136px, 10.625vw, 153px) clamp(124px, 10vw, 152px);
