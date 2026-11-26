@@ -211,33 +211,22 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
 .footer-row {
   min-height: 192px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 71px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "game qr" "game links";
+  grid-template-rows: 1fr auto;
   align-items: center;
-  gap: 24px;
+  gap: 14px 48px;
+  padding-block: 48px 56px;
   font: 400 15px/1.3 "TT Uzum", sans-serif;
   color: #fff;
 }
 .footer-qr { border-radius: 8px; }
-.footer-links { display: flex; justify-self: end; align-items: center; gap: 12px; }
-.footer-game { display: none; }
-main:has(.home-hero) + .footer .footer-row {
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas: "game qr" "game links";
-  grid-template-rows: 1fr auto;
-  gap: 14px 48px;
-  padding-block: 48px 56px;
-}
-main:has(.home-hero) + .footer .footer-caption { display: none; }
-main:has(.home-hero) + .footer .footer-game { grid-area: game; display: grid; gap: 14px; justify-items: start; }
-main:has(.home-hero) + .footer .footer-qr-link { grid-area: qr; align-self: start; justify-self: end; }
-main:has(.home-hero) + .footer .footer-links { grid-area: links; align-self: end; }
+.footer-links { grid-area: links; display: flex; align-self: end; justify-self: end; align-items: center; gap: 12px; }
+.footer-game { grid-area: game; display: grid; gap: 14px; justify-items: start; }
+.footer-qr-link { grid-area: qr; align-self: start; justify-self: end; }
 .footer-game h2 { font: 700 clamp(24px, 2.2vw, 32px)/1.15 "TT Uzum", sans-serif; }
 .footer-game p { max-width: 46ch; font: var(--body-small); color: #fff; }
 .footer-game .pill { margin-top: 6px; }
-main:not(:has(.home-hero)) + .footer .footer-row {
-  grid-template-columns: minmax(0, 1fr) 71px;
-}
-main:not(:has(.home-hero)) + .footer .footer-links { display: none; }
 .footer-site { margin-left: 12px; }
 .footer-site:hover { text-decoration: underline; }
 .visually-hidden, .skip:not(:focus) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -329,15 +318,15 @@ main:not(:has(.home-hero)) + .footer .footer-links { display: none; }
   .signals ol { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 24px; }
   .signals li { padding: 24px 16px; border-radius: 24px; }
   .signal-index { margin-bottom: 24px; font-size: 40px; }
-  .footer-row { min-height: 120px; }
-  main:has(.home-hero) + .footer .footer-row {
+  .footer-row {
+    min-height: 120px;
     grid-template-columns: 1fr auto;
     grid-template-areas: "game game" "links qr";
     grid-template-rows: auto auto;
     gap: 24px 16px;
     padding-block: 32px 36px;
   }
-  main:has(.home-hero) + .footer .footer-links { justify-self: start; align-self: end; }
+  .footer-links { justify-self: start; }
 }
 @media (min-width: 768px) and (max-width: 1099px) {
   :root {
