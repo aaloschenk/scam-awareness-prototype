@@ -40,7 +40,7 @@ function home() {
       <div class="container hero-inner">
         <div class="hero-copy"><h1>Безопасность<br>начинается<br>со&nbsp;знаний</h1>
           <p>Разбираем схемы мошенников на реальных примерах и рассказываем, как защитить свои деньги и не попасться на обман</p>
-          <a class="button play-button" href="https://t.me/access_demo_2026_bot">Играть сейчас</a>
+          <a class="pill dark play-button" href="https://t.me/access_demo_2026_bot">Играть сейчас</a>
         </div>
         <img class="hero-art" src="assets/hero.png" alt="">
       </div>
