@@ -220,20 +220,17 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
 .footer-qr { border-radius: 8px; }
 .footer-links { display: flex; justify-self: end; align-items: center; gap: 12px; }
 .footer-game { display: none; }
-main:has(.home-hero) + .footer {
-  --section-gradient: linear-gradient(180deg, #6028d5 0%, #6e38c6 72%, #e6ddf4 100%);
-}
 main:has(.home-hero) + .footer .footer-row {
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas: "game qr" "game links";
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr auto;
   gap: 14px 48px;
   padding-block: 48px 56px;
 }
 main:has(.home-hero) + .footer .footer-caption { display: none; }
 main:has(.home-hero) + .footer .footer-game { grid-area: game; display: grid; gap: 14px; justify-items: start; }
 main:has(.home-hero) + .footer .footer-qr-link { grid-area: qr; align-self: end; justify-self: end; }
-main:has(.home-hero) + .footer .footer-links { grid-area: links; align-self: start; }
+main:has(.home-hero) + .footer .footer-links { grid-area: links; align-self: end; }
 .footer-game h2 { font: 700 clamp(24px, 2.2vw, 32px)/1.15 "TT Uzum", sans-serif; }
 .footer-game p { max-width: 46ch; font: var(--body-small); color: #fff; }
 .footer-game .pill { margin-top: 6px; }
