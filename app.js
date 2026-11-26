@@ -31,9 +31,9 @@ const firstSteps = [
 
 function home() {
   const featured = [
-    [10, 'Звонок якобы из банка', 'Банки и деньги', 'coins'],
-    [19, 'Фальшивая доставка', 'Маркетплейсы', 'box'],
-    [9, 'Подработка от имени Uzum', 'Работа и заработок', 'tools'],
+    [10, 'Звонок якобы из банка', 'coins'],
+    [19, 'Фальшивая доставка', 'box'],
+    [9, 'Подработка от имени Uzum', 'tools'],
   ];
   return `
     <section class="hero home-hero">
@@ -47,11 +47,11 @@ function home() {
     </section>
     <section class="sheet"><div class="container">
       <h2>Популярные схемы</h2>
-      <div class="three-column">${featured.map(([id, title, category, asset]) => `
+      <div class="three-column">${featured.map(([id, title, asset]) => `
         <a class="featured" href="#/scheme/${id}">
           <h3>${title}</h3><p>${escapeHtml(byId.get(id).description)}</p>
           <div class="featured-bottom">
-            <span class="tag">${category}</span><img src="assets/${asset}.png" alt="">
+            <span class="tag">Подробнее</span><img src="assets/${asset}.png" alt="">
           </div>
         </a>`).join('')}</div>
       ${button('#/schemes', 'Ко всем схемам')}
