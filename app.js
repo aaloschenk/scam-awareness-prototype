@@ -232,7 +232,15 @@ function route() {
   typesetContent(main);
 }
 
-menuToggle.addEventListener('click', () => setMenuOpen(sectionsMenu.hidden));
+menuToggle.addEventListener('click', event => {
+  setMenuOpen(event.pointerType === 'mouse' || sectionsMenu.hidden);
+});
+navigation.addEventListener('pointerenter', event => {
+  if (event.pointerType === 'mouse') setMenuOpen(true);
+});
+navigation.addEventListener('pointerleave', event => {
+  if (event.pointerType === 'mouse' && !sectionsMenu.contains(document.activeElement)) setMenuOpen(false);
+});
 sectionsMenu.addEventListener('click', event => {
   const button = event.target.closest('button[data-section]');
   setMenuOpen(false);

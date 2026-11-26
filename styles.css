@@ -61,6 +61,12 @@ body:has(.detail-hero) .footer { z-index: 2; }
 .logo { width: 147px; }
 .header nav { display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-end; }
 .section-navigation { position: relative; }
+.section-navigation:has([aria-expanded="true"])::after {
+  content: "";
+  position: absolute;
+  inset: 100% 0 auto;
+  height: 10px;
+}
 .sections-menu {
   position: absolute;
   top: calc(100% + 10px);
