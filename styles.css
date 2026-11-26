@@ -251,8 +251,6 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   min-height: 192px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas: "game qr" "game links";
-  grid-template-rows: 1fr auto;
   align-items: center;
   gap: 14px 48px;
   padding-block: 48px 56px;
@@ -260,12 +258,12 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   color: #fff;
 }
 .footer-qr { border-radius: 8px; }
-.footer-links { grid-area: links; display: flex; align-self: end; justify-self: end; align-items: center; gap: 12px; }
-.footer-game { grid-area: game; display: grid; gap: 14px; justify-items: start; }
-.footer-qr-link { grid-area: qr; align-self: start; justify-self: end; }
+.footer-links { display: flex; align-self: end; justify-self: end; align-items: center; gap: 12px; }
+.footer-game { display: grid; gap: 14px; justify-items: start; }
+.footer-qr-link { margin-top: 6px; }
 .footer-game h2 { font: 700 clamp(24px, 2.2vw, 32px)/1.15 "TT Uzum", sans-serif; }
 .footer-game p { max-width: 46ch; font: var(--body-small); color: #fff; }
-.footer-game .pill { margin-top: 6px; }
+.footer-game .footer-play { display: none; margin-top: 6px; }
 .footer-site { margin-left: 12px; }
 .footer-site:hover { text-decoration: underline; }
 .visually-hidden, .skip:not(:focus) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -363,12 +361,12 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   .signal-index { margin-bottom: 24px; font-size: 40px; }
   .footer-row {
     min-height: 120px;
-    grid-template-columns: 1fr auto;
-    grid-template-areas: "game game" "links qr";
-    grid-template-rows: auto auto;
+    grid-template-columns: minmax(0, 1fr);
     gap: 24px 12px;
     padding-block: 32px 36px;
   }
+  .footer-qr-link { display: none; }
+  .footer-game .footer-play { display: inline-flex; }
   .footer-links { justify-self: start; gap: 8px; }
   .footer-site { margin-left: 8px; }
 }
