@@ -60,6 +60,38 @@ body:has(.detail-hero) .footer { z-index: 2; }
 .header-row { min-height: 127px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .logo { width: 147px; }
 .header nav { display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-end; }
+.section-navigation { position: relative; }
+.sections-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 1;
+  width: max-content;
+  max-width: min(280px, calc(100vw - 40px));
+  max-height: calc(100dvh - 140px);
+  overflow: auto;
+  padding: 8px;
+  margin: 0;
+  list-style: none;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 8px 32px #19132a33;
+}
+.sections-menu a, .sections-menu button {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 12px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+}
+.sections-menu :is(a, button):hover { background: var(--surface); }
+.sections-menu :is(a, button):focus-visible { outline-color: #5121c2; outline-offset: -3px; }
+#sections-toggle { border: 0; }
 .pill { min-height: 47px; display: inline-flex; align-items: center; gap: 10px; padding: 0 22px; border-radius: 100px; background: #fff; color: var(--ink); font: 500 16px/1.3 "TT Uzum", sans-serif; }
 .button:disabled, .pill:disabled { border: 0; opacity: 1; cursor: default; }
 .header .pill { justify-content: center; min-width: 125px; }
@@ -257,7 +289,10 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   .container { width: calc(100% - 40px); }
   .header-row { min-height: 67px; }
   .header .logo { width: 88px; }
-  .header #catalog-link { display: none; }
+  .header-row { gap: 8px; }
+  .header nav { gap: 8px; flex-wrap: nowrap; }
+  .header #sections-toggle { min-width: 0; min-height: 43px; padding: 0 10px; font-size: 13px; }
+  .sections-menu { right: auto; left: 0; max-width: min(220px, calc(100vw - 114px)); }
   .header .pill.dark { min-width: 0; min-height: 43px; padding: 0 12px; font-size: 14px; }
   .header.is-scrolled { border-radius: 0 0 24px 24px; }
   .home-hero .hero-inner { padding-block: 102px calc(clamp(220px, 70vw, 332px) + 24px); }

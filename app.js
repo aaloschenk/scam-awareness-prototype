@@ -3,13 +3,43 @@ const all = groups.flatMap(group => group.items);
 const byId = new Map(all.map(item => [item.id, item]));
 const main = document.querySelector('main');
 const header = document.querySelector('.header');
-const catalogLink = document.querySelector('#catalog-link');
+const navigation = document.querySelector('.section-navigation');
+const menuToggle = document.querySelector('#sections-toggle');
+const sectionsMenu = document.querySelector('#sections-menu');
 const state = { group: -1, query: '' };
+
+function setMenuOpen(open) {
+  menuToggle.setAttribute('aria-expanded', String(open));
+  sectionsMenu.hidden = !open;
+}
+
+function renderMenu(page, item) {
+  const common = [['#game', 'Играть сейчас']];
+  const links = !page ? [
+    ['#/schemes', 'Все схемы'],
+    ['#popular', 'Популярные схемы'],
+    ['#first-steps', 'Что делать в первую очередь'],
+    ['#faq', 'Частые вопросы'],
+  ] : page === 'schemes' ? [
+    ['#/', 'На главную'],
+    ['#search', 'Поиск по схемам'],
+    ['#results', 'Список схем'],
+  ] : [
+    ['#/schemes', 'Все схемы'],
+    ...(item ? [['#signals', 'Что выдаёт обман']] : []),
+  ];
+  sectionsMenu.innerHTML = [...links, ...common].map(([target, label]) => target.startsWith('#/')
+    ? `<li><a href="${target}">${label}</a></li>`
+    : `<li><button type="button" data-section="${target}">${label}</button></li>`).join('');
+  typesetContent(sectionsMenu);
+  setMenuOpen(false);
+}
 
 function updateHeader() {
   const panel = main.querySelector('.signals');
   header.classList.toggle('is-scrolled', !panel && window.scrollY > 0);
   header.inert = Boolean(panel && panel.getBoundingClientRect().top <= 0);
+  if (header.inert && !sectionsMenu.hidden) setMenuOpen(false);
 }
 const detailSize = new ResizeObserver(entries => {
   for (const { target } of entries) {
@@ -45,7 +75,7 @@ function home() {
         <img class="hero-art" src="assets/hero.png" alt="">
       </div>
     </section>
-    <section class="sheet"><div class="container">
+    <section class="sheet" id="popular"><div class="container">
       <h2>Популярные схемы</h2>
       <div class="three-column">${featured.map(([id, title, asset]) => `
         <a class="featured" href="#/scheme/${id}">
@@ -56,14 +86,14 @@ function home() {
         </a>`).join('')}</div>
       ${button('#/schemes', 'Ко всем схемам')}
     </div></section>
-    <section class="sheet purple"><div class="container">
+    <section class="sheet purple" id="first-steps"><div class="container">
       <h2>Что делать в первую очередь?</h2>
       <ol class="three-column steps">${firstSteps.map((step, index) => `<li><span>${index + 1}</span><p>${step}</p></li>`).join('')}</ol>
       <div class="help-banner"><div><h3>Уже сообщили код или перевели деньги?</h3>
         <p>Свяжитесь с банком через приложение или по номеру на карте.</p></div>
         <button class="button" type="button" disabled>Срочная помощь</button></div>
     </div></section>
-    <section class="sheet faq"><div class="container">
+    <section class="sheet faq" id="faq"><div class="container">
       <h2>Часто задаваемые вопросы</h2>
       <details open><summary>Как проверить, что сообщение действительно от банка?</summary>
         <p>Откройте приложение банка самостоятельно и проверьте уведомления и операции. Если сомневаетесь, напишите в поддержку через приложение.</p></details>
@@ -155,7 +185,7 @@ function detail(item) {
         </div>
       </div></div>
     </div></section>
-    <section class="sheet signals"><div class="container">
+    <section class="sheet signals" id="signals"><div class="container">
       <h2>Что выдаёт обман</h2>
       <ol>${item.signals.map(([title, description], index) => `
         <li><span class="signal-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
@@ -198,11 +228,33 @@ function route() {
     main.innerHTML = `<section class="sheet help-page"><div class="container"><h1>${pageTitle}</h1>${button('#/schemes', 'Ко всем схемам')}</div></section>`;
   }
   document.title = `${pageTitle} · Uzum`;
-  catalogLink.href = page === 'schemes' ? '#/' : '#/schemes';
-  catalogLink.textContent = typeset(page === 'schemes' ? 'На главную' : '☰ Схемы');
+  renderMenu(page, item);
   typesetContent(main);
-  if (page === 'schemes') catalogLink.removeAttribute('aria-current');
 }
+
+menuToggle.addEventListener('click', () => setMenuOpen(sectionsMenu.hidden));
+sectionsMenu.addEventListener('click', event => {
+  const button = event.target.closest('button[data-section]');
+  setMenuOpen(false);
+  if (!button) return;
+  const section = document.querySelector(button.dataset.section);
+  if (!section) return;
+  const offset = main.querySelector('.detail-hero') ? 0 : header.offsetHeight + 12;
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
+  const focus = section.matches('input') ? section : section.querySelector('h2') || section;
+  if (!focus.matches('input')) focus.tabIndex = -1;
+  focus.focus({ preventScroll: true });
+  window.scrollTo({ top: window.scrollY + section.getBoundingClientRect().top - offset, behavior });
+});
+document.addEventListener('click', event => {
+  if (!navigation.contains(event.target)) setMenuOpen(false);
+});
+navigation.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && !sectionsMenu.hidden) {
+    setMenuOpen(false);
+    menuToggle.focus();
+  }
+});
 
 window.addEventListener('hashchange', () => {
   route();
