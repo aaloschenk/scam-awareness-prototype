@@ -203,6 +203,7 @@ function detail(item) {
 
 function route() {
   detailSize.disconnect();
+  main.before(header);
   const segments = location.hash.slice(1).split('/').filter(Boolean);
   const [page, id] = segments;
   const item = page === 'scheme' && byId.get(Number(id));
@@ -229,7 +230,9 @@ function route() {
   } else if (item) {
     pageTitle = item.title;
     main.innerHTML = detail(item);
-    detailSize.observe(main.querySelector('.detail-hero'));
+    const hero = main.querySelector('.detail-hero');
+    hero.prepend(header);
+    detailSize.observe(hero);
   } else {
     pageTitle = 'Страница не найдена';
     main.innerHTML = `<section class="sheet help-page"><div class="container"><h1>${pageTitle}</h1>${button('#/schemes', 'Ко всем схемам')}</div></section>`;
