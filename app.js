@@ -38,8 +38,10 @@ function home() {
   return `
     <section class="hero home-hero">
       <div class="container hero-inner">
-        <div class="hero-copy"><h1>Как распознать мошенников</h1>
-        <p>Разберите примеры звонков и сообщений и узнайте, какие детали выдают обман.</p></div>
+        <div class="hero-copy"><h1>Безопасность<br>начинается<br>со&nbsp;знаний</h1>
+          <p>Разбираем схемы мошенников на реальных примерах и рассказываем, как защитить свои деньги и не попасться на обман</p>
+          <a class="button play-button" href="https://t.me/access_demo_2026_bot">Играть сейчас</a>
+        </div>
         <img class="hero-art" src="assets/hero.png" alt="">
       </div>
     </section>
@@ -167,7 +169,7 @@ function route() {
   const segments = location.hash.slice(1).split('/').filter(Boolean);
   const [page, id] = segments;
   const item = page === 'scheme' && byId.get(Number(id));
-  let pageTitle = 'Как распознать мошенников';
+  let pageTitle = 'Безопасность начинается со знаний';
   if (!page) {
     main.innerHTML = home();
   } else if (page === 'schemes') {
