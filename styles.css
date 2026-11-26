@@ -195,19 +195,21 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
 .detail-hero .hero-inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 42%);
+  grid-template-areas: "title phone" "guidance phone";
+  grid-template-rows: auto 1fr;
   align-items: stretch;
-  gap: clamp(20px, 3vw, 44px);
+  column-gap: clamp(20px, 3vw, 44px);
   min-height: 0;
   padding-block: 114px 0;
 }
 .detail-hero + .sheet { margin-top: calc(-1 * var(--radius)); z-index: 2; }
-.detail-hero .hero-copy { width: 100%; padding-block: 46px calc(64px + var(--radius)); }
-.detail-hero h1 { --detail-title-size: clamp(38px, 4.45vw, 64px); font-size: var(--detail-title-size); line-height: 1.05; max-width: 651px; overflow-wrap: normal; }
+.detail-hero h1 { grid-area: title; padding-top: 46px; color: #fff; --detail-title-size: clamp(38px, 4.45vw, 64px); font-size: var(--detail-title-size); line-height: 1.05; max-width: 651px; overflow-wrap: normal; }
 .detail-hero .detail-title-compact { font-size: calc(var(--detail-title-size) * .88); }
-.guidance { margin-top: 28px; color: #fff; font: var(--body-large); }
+.guidance { grid-area: guidance; margin-top: 28px; padding-bottom: calc(64px + var(--radius)); color: #fff; font: var(--body-large); }
 .guidance p + p { margin-top: 24px; }
 .guidance strong { font-weight: 700; }
 .phone {
+  grid-area: phone;
   position: relative;
   margin-right: -16px;
   min-width: 0;
@@ -354,14 +356,13 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
   .scheme-row { padding: 16px; border-radius: 24px; gap: 8px; }
   .scheme-row strong { min-height: 30px; font-size: 18px; }
   .row-icon { flex: 0 0 32px; min-width: 32px; height: 32px; margin: 0; }
-  .detail-hero .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 102px; }
-  .detail-hero .hero-copy { padding: 0; }
-  .detail-hero h1 { --detail-title-size: clamp(25px, 8.3vw, 34px); }
+  .detail-hero .hero-inner { grid-template-columns: minmax(0, 1fr); grid-template-areas: "title" "phone" "guidance"; grid-template-rows: auto; gap: 16px; padding-top: 102px; }
+  .detail-hero h1 { --detail-title-size: clamp(25px, 8.3vw, 34px); padding-top: 0; }
   .detail-hero { top: min(0px, calc(100svh - var(--detail-height, 0px) + var(--radius))); }
-  .guidance { margin-top: 16px; }
+  .guidance { margin-top: 8px; }
   .guidance p + p { margin-top: 16px; }
   .phone { width: min(100%, 296px); justify-self: center; }
-  .phone-screen { padding-bottom: calc(64px + var(--radius)); }
+  .phone-screen { padding-bottom: 20px; }
   .chat-header { min-height: 40px; gap: 8px; }
   .chat-header strong { font-size: 13px; overflow-wrap: anywhere; }
   .chat-header > span:first-child { font-size: 22px; }

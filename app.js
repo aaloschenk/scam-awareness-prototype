@@ -177,9 +177,7 @@ function detail(item) {
     : '';
   return `
     <section class="hero detail-hero"><div class="container hero-inner">
-      <div class="hero-copy"><h1${item.id === 24 ? ' class="detail-title-compact"' : ''}>${escapeHtml(item.title)}</h1><div class="guidance">
-        <p>${guidanceLine(item.risk)}</p><p>${guidanceLine(item.advice)}</p>
-      </div></div>
+      <h1${item.id === 24 ? ' class="detail-title-compact"' : ''}>${escapeHtml(item.title)}</h1>
       <div class="phone"><div class="phone-screen" aria-label="Пример сообщения">
         <img class="phone-status" src="assets/chat-status.png" alt="">
         <div class="chat-header"><span aria-hidden="true">‹</span><img class="avatar" src="assets/chat-avatar.png" alt=""><strong>${escapeHtml(item.sender)}</strong></div>
@@ -190,6 +188,9 @@ function detail(item) {
           <img class="chat-reply" src="assets/chat-reply.png" alt="">
         </div>
       </div></div>
+      <div class="guidance">
+        <p>${guidanceLine(item.risk)}</p><p>${guidanceLine(item.advice)}</p>
+      </div>
     </div></section>
     <section class="sheet signals" id="signals"><div class="container">
       <h2>Что выдаёт обман</h2>
