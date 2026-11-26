@@ -106,6 +106,7 @@ body:has(.detail-hero) .footer { z-index: 2; }
 }
 .purple { --section-gradient: var(--gradient); padding-bottom: 112px; }
 .footer { --section-gradient: linear-gradient(180deg, #6028d5 0%, #e6ddf4 100%); }
+.footer::before { border-radius: var(--radius); }
 .purple h2 { color: #fff; }
 .steps, .signals ol, .category ul { margin: 0; padding: 0; list-style: none; }
 .steps li, .help-banner { border-radius: 32px; padding: 32px 24px; background: #fff; }
@@ -208,6 +209,10 @@ body:has(.catalog), body:has(.help-page) { background: linear-gradient(#6028d5, 
 }
 .footer-qr { border-radius: 8px; }
 .footer-links { display: flex; justify-self: end; align-items: center; gap: 12px; }
+main:not(:has(.home-hero)) + .footer .footer-row {
+  grid-template-columns: minmax(0, 1fr) 71px;
+}
+main:not(:has(.home-hero)) + .footer .footer-links { display: none; }
 .footer-site { margin-left: 12px; }
 .footer a:hover { text-decoration: underline; }
 .visually-hidden, .skip:not(:focus) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
